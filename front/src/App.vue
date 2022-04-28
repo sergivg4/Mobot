@@ -48,7 +48,7 @@
       if (localStorage.getItem('userData')) {
         this.userData = JSON.parse(localStorage.getItem('userData'));
       }
-
+    }
   }
 
 </script>
