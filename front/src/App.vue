@@ -1,6 +1,14 @@
 <template>
   <div id="app">
-   
+    <div id="mianHeader">
+
+    </div>
+    <div id="mainContainer">
+
+    </div>
+    <div id="infoContainer">
+    
+    </div>        
   </div>
 </template>
 <style>
@@ -22,7 +30,7 @@
     methods:{
     },
     watch: {
-      '$route': {
+      /* '$route': {
         immediate: true,
         handler(newValue) {
           this.hiddenView = false
@@ -32,8 +40,8 @@
           } else {
             this.auth = true
           }
-        }
-      },
+        } 
+      },*/
     },
     mounted() {
       axios.interceptors.response.use((response) => {
