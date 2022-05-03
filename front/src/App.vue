@@ -7,7 +7,6 @@
 
     </div>
     <div id="infoContainer">
-    
     </div>        
   </div>
 </template>
