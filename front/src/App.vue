@@ -1,13 +1,6 @@
 <template>
   <div id="app">
-    <div id="mianHeader">
-
-    </div>
-    <div id="mainContainer">
-
-    </div>
-    <div id="infoContainer">
-    </div>        
+<router-view />
   </div>
 </template>
 <style>
@@ -16,6 +9,7 @@
 <script>
   import axios from "./helpers/axios_import";
   import 'vue-loading-overlay/dist/vue-loading.css';
+
   export default {
     data: function () {
       return {
@@ -42,7 +36,7 @@
         } 
       },*/
     },
-    mounted() {
+    /* mounted() {
       axios.interceptors.response.use((response) => {
           return response;
       }, (error) => {
@@ -54,8 +48,8 @@
       });
       if (localStorage.getItem('userData')) {
         this.userData = JSON.parse(localStorage.getItem('userData'));
-      }
-    }
+      } 
+    }*/
   }
 
 </script>
