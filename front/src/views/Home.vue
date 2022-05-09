@@ -4,6 +4,10 @@ body {
   background: linear-gradient(180deg, #000001, #011439) !important;
   font-family: 'Inter', sans-serif;
   color: white;
+  height: 100%;
+}
+#vue_app, #app, .content{
+  height: 100%;
 }
 #home{
   width: 100%;
@@ -33,7 +37,13 @@ header{
     list-style:none;
 }
 .nav-menu li{
-  padding: 0px 40px;
+  padding: 15px 35px;
+  margin: 0px 10px;
+  font-size: 22px;
+  font-weight: 600;
+}
+.signInBtn{
+  border: solid;
 }
 .content{
   display: flex;
@@ -41,6 +51,10 @@ header{
 .info, .model{
   width: 50%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: -100px;
+  z-index: -1;
 }
 .info h1{
   font-size: 60px;
@@ -59,6 +73,9 @@ header{
 .txtBlock{
   margin: 0px 0px 0px 200px;
 }
+.model{
+  z-index: 100;
+}
 
 </style>
 <template>
@@ -69,7 +86,7 @@ header{
       </span>
       <span class="headerPart2">
         <ul class="nav-menu">
-          <li>Sign In</li>
+          <li class="signInBtn">Sign In</li>
           <li>Login</li>
         </ul>
       </span>
@@ -82,11 +99,12 @@ header{
           <a href="">More info ></a>
         </div>
       </span>
-      <span class="model">s</span>
+      <span class="model">
+        <div id="blue_sphere"></div>
+      </span>
     </div>
   </div>
 </template>
-
 <script>
   import axios from "../helpers/axios_import";
 export default {
