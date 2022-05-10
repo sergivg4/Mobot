@@ -4,7 +4,9 @@
   </div>
 </template>
 <style>
-  @import './styles/app.css';
+  body{
+    background: linear-gradient(#191A1F 50%, rgba(7,6,93,1) 73%, rgba(16,16,185,1) 104%) !important;
+  }
 </style>
 <script>
   import axios from "./helpers/axios_import";
