@@ -8,6 +8,7 @@ import Settings from '../views/Settings.vue'
 import Info from '../views/Info.vue'
 import Register from '../views/Register.vue'
 import ArmModel from '../views/ArmModel.vue'
+import robotApp from '../views/robotApp.vue'
 const history = createWebHistory();
 const routes = [
   {
@@ -17,6 +18,10 @@ const routes = [
   {
     path: '/',
     component: Home,
+  },
+  {
+    path: '/app',
+    component: robotApp,
   },
   {
     path: '/Register',
