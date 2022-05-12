@@ -1,10 +1,15 @@
+@font-face {
+    font-family: 'Inter';
+    src: url(../assets/fonts/Inter-VariableFont_slnt,wght.ttf);
+    }
 * {
     padding: 0;
     margin: 0;
     scroll-behavior: smooth;
     scrollbar-gutter: auto;
+    font-family: 'Inter';
 }
-body {background: #3d3d40;overflow: hidden;}
+body {background: #191A1F;overflow: hidden;}
 html,#app {width: 100%;height: 100%;}
 
 /* #infoContainer{
