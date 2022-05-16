@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "three": "^0.140.2",
     "vue": "^3.2.25",
     "vue-loading-overlay": "5.0",
     "vue-router": "^4.0.13"
