@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-<router-view />
+    <router-view />
   </div>
 </template>
 <style>
-  body{
-    background: linear-gradient(#191A1F 50%, rgba(7,6,93,1) 73%, rgba(16,16,185,1) 104%) !important;
-  }
+  @import './styles/app.css';
 </style>
 <script>
   import axios from "./helpers/axios_import";
-  import 'vue-loading-overlay/dist/vue-loading.css';
 
   export default {
     data: function () {

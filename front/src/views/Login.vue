@@ -6,12 +6,6 @@
   color: #ffffff;
 }
 
-body {
-  display: flex;
-  margin: 0px;
-  font-family: sans-serif;
-}
-
 .welcome-box {
   display: flex;
   flex-flow: column;
@@ -27,10 +21,18 @@ body {
 }
 
 .welcomeLabel {
+  font-size: 60px;
+  font-weight: 900;
+  text-transform: uppercase;
   color: #ffffff;
-  font-size: 70px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+h2{
+  color: #97979D;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .descripcion {
@@ -57,7 +59,6 @@ body {
   position: absolute;
   display: flex;
   flex-flow: row wrap;
-  gap: 50px;
   gap: 50px;
   top: 47%;
   left: 80%;
@@ -237,7 +238,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  left: 35%;
+  margin-left: 39.5%;
   cursor: pointer;
 }
 .button2:hover {
@@ -325,7 +326,7 @@ body {
     <div class="mobotTitle">MOBOT</div>
     <div class="welcome-box">
       <label class="welcomeLabel">BIENVENIDO A MOBOT</label>
-      <p class="descripcion">Tu esclavo robótico personal</p>
+      <h2>Tu esclavo robótico personal</h2>
       <p class="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat faucibus luctus. Sed varius fringilla odio. Integer volutpat porta nunc nec iaculis. Nullam a neque in nibh gravida tincidunt in a metus. Donec ut pellentesque nibh. Proin scelerisque, leo vitae dignissim blandit, justo elit tempor libero, non placerat mauris nulla sit amet magna. Fusce ornare tellus non euismod blandit.</p>
       <p class="textoregistro">¿No te has registrado aún?</p>
       <div class="button2">
@@ -347,7 +348,7 @@ body {
           <input type="password" name="" required="" />
           <label>Contraseña</label>
         </div>
-        <a href="/register" class="textoOlvidaContrasenya">¿Has olvidado la contraseña?</a>
+        <a href="/recoverpassword" class="textoOlvidaContrasenya">¿Has olvidado la contraseña?</a>
         <a href="#" class="botonEnviar">
           <span></span>
           <span></span>
