@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-<router-view />
+    <router-view />
   </div>
 </template>
 <style>
@@ -8,7 +8,6 @@
 </style>
 <script>
   import axios from "./helpers/axios_import";
-  import 'vue-loading-overlay/dist/vue-loading.css';
 
   export default {
     data: function () {
