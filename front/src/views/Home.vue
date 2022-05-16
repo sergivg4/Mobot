@@ -20,7 +20,7 @@
       </div>
     </div>
     <div id="home-arm-container">
-
+      <ArmModel></ArmModel>
     </div>
     <div id="home-bottom">
 
@@ -35,7 +35,10 @@
 
 <script>
   import axios from "../helpers/axios_import";
+  import ArmModel from './ArmModel.vue';
+
 export default {
+  components: { ArmModel },
     name:"Home",
     data: function () {
       return {

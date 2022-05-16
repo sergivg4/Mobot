@@ -4,7 +4,6 @@
   </div>
 </template>
 <style>
-  @import '../styles/app.css';
 </style>
 <script>
   import axios from "../helpers/axios_import";

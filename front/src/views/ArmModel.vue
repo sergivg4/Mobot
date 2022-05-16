@@ -1,10 +1,18 @@
 <style>
+#arm_canvas{
+  width:100%;
+  height: 23rem;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+#arm_canvas canvas{
+  width: 100% !important;
+  height: 46rem !important;
+}
 </style>
 <template>
-  <div>
-    <div id="ArmModel">ArmModel</div>
-    <div ref="canvas"></div>
-  </div>
+    <div id="arm_canvas" ref="canvas"></div>
 </template>
 <script>
 import * as THREE from "three";
@@ -75,9 +83,7 @@ export default {
       loader.load("/models/ur10_2.dae", function (result) {
         window.robot = result.scene;
         let componentsArray = [];
-        console.log(THIS.scene);
         componentsArray = THIS.getRobotItems(robot, componentsArray, THIS);
-        console.log(componentsArray);
         THIS.pivot0.add(componentsArray.ArmBase);
         THIS.scene.add(componentsArray.ArmBase);
         componentsArray.ArmBase.add(componentsArray.ArmBase2);
@@ -135,26 +141,34 @@ export default {
       var pl3 = new THREE.PointLight(0xffffff);
       var pl4 = new THREE.PointLight(0xffffff);
       var pl = new THREE.PointLight(0xffffff);
+
       pl.position.set(30, 60, 40);
       pl2.position.set(-10, 10, -40);
       pl3.position.set(-30, 10, 30);
       pl4.position.set(30, 10, -30);
       this.scene.add(pl);
-      var pointLightHelper = new THREE.PointLightHelper(
+  /*     var pointLightHelper = new THREE.PointLightHelper(
         pl2,
         this.sphereSize,
         0x000000
-      );
-      //this.scene.add(pointLightHelper);
+      ); */
+     /*  var pointLightHelper = new THREE.PointLightHelper(
+        base_light,
+        this.sphereSize,
+        0x000000
+      ); 
+      this.scene.add(pointLightHelper);*/
     },
     createCamera() {
       // PerspectiveCamera( fov, aspect, near, far )
-      this.camera.position.set(60, 10, 60);
+      this.camera.position.set(70, 0, 70);
       //this.camera.lookAt(this.look_x, this.look_y, this.look_z)
       this.scene.add(this.camera);
     },
     createRender() {
-      this.renderer.setSize(500, 400); //840/840
+      var width_arm=this.$refs.canvas.clientWidth;
+      var height_arm=this.$refs.canvas.clientHeight+20;
+      this.renderer.setSize(width_arm-50,height_arm); //840/840
       this.renderer.setClearColor(0x000000, 0); // the default
       this.$refs.canvas.appendChild(this.renderer.domElement);
     },
