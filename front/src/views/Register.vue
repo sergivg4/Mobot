@@ -4,6 +4,13 @@
     width: 130%;
 }
 
+.textoregistro2{
+    color: #ffffff;
+    font-size: 22px;
+    text-align: center;
+    margin-top: 80px;
+}
+
 .register-box {
   position: absolute;
   display: flex;
@@ -177,8 +184,12 @@
     gap: 10px;
   }
 
-  .textoregistro{
+  .textoregistro2{
     margin-top: 660px !important;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 80px;
   }
 }
 
@@ -196,7 +207,7 @@
       <label class="welcomeLabel">BIENVENIDO A MOBOT</label>
       <p class="descripcion">Tu esclavo robótico personal</p>
       <p class="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat faucibus luctus. Sed varius fringilla odio. Integer volutpat porta nunc nec iaculis. Nullam a neque in nibh gravida tincidunt in a metus. Donec ut pellentesque nibh. Proin scelerisque, leo vitae dignissim blandit, justo elit tempor libero, non placerat mauris nulla sit amet magna. Fusce ornare tellus non euismod blandit.</p>
-      <p class="textoregistro">¿Ya estás registrado?</p>
+      <p class="textoregistro2">¿Ya estás registrado?</p>
       <div class="button2">
         <span></span>
         <span></span>
