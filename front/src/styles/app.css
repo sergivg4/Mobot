@@ -8,7 +8,8 @@
 body {
     height: 100%;
     margin: 0;
-    background: linear-gradient(#191A1F 50%, rgba(7,6,93,1) 73%, rgba(16,16,185,1) 104%);
+    /* background: linear-gradient(#191A1F 50%, rgba(7,6,93,1) 73%, rgba(16,16,185,1) 104%); */
+    background: linear-gradient( 180deg, #000001, #011439);
     background-repeat: no-repeat;
     background-attachment: fixed;
     overflow: scroll; 
@@ -46,7 +47,7 @@ body {
     }
 
     h2{
-        font-size: 18px;
+        font-size: 18px !important;
     }
 
     .textoregistro{

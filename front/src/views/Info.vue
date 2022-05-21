@@ -39,16 +39,54 @@ font-family: 'Inter', sans-serif;
   margin-left: 15%;
 }
 
+.descripcionInfo{
+  color: #ffffff;
+  font-size: 28px;
+}
+
+@media only screen and (max-width: 500px){
+  .imgrobotinfo{
+    margin-left: 30%;
+  }
+
+  .descripcionInfo{
+    font-size: 14px;
+  }
+
+  .info-box{
+    top: 25%;
+    left: 44%;
+    width: 100%;
+  }
+
+  .info-box2{
+    width: 100%;
+    top: 75%;
+    left: 44%;
+  }
+}
+
+@media only screen and (max-width: 350px){
+  .info-box{
+    left: 42%;
+  }
+
+  .info-box2{
+    left: 42%;
+    top: 80%;
+  }
+}
+
 </style>
 <template>
   <div id="info">
     <div class="info-box">
       <label class="welcomeLabel">INFORMACION SOBRE MOBOT</label>
       <h2>Tu esclavo robótico personal</h2>
-      <p class="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat faucibus luctus. Sed varius fringilla odio. Integer volutpat porta nunc nec iaculis. Nullam a neque in nibh gravida tincidunt in a metus. Donec ut pellentesque nibh. Proin scelerisque, leo vitae dignissim blandit, justo elit tempor libero, non placerat mauris nulla sit amet magna. Fusce ornare tellus non euismod blandit.</p>
+      <p class="descripcionInfo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat faucibus luctus. Sed varius fringilla odio. Integer volutpat porta nunc nec iaculis. Nullam a neque in nibh gravida tincidunt in a metus. Donec ut pellentesque nibh. Proin scelerisque, leo vitae dignissim blandit, justo elit tempor libero, non placerat mauris nulla sit amet magna. Fusce ornare tellus non euismod blandit.</p>
     </div>
     <div class="info-box2">
-      <p class="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat faucibus luctus. Sed varius fringilla odio. Integer volutpat porta nunc nec iaculis. Nullam a neque in nibh gravida tincidunt in a metus. Donec ut pellentesque nibh. Proin scelerisque, leo vitae dignissim blandit, justo elit tempor libero, non placerat mauris nulla sit amet magna. Fusce ornare tellus non euismod blandit.</p>
+      <p class="descripcionInfo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat faucibus luctus. Sed varius fringilla odio. Integer volutpat porta nunc nec iaculis. Nullam a neque in nibh gravida tincidunt in a metus. Donec ut pellentesque nibh. Proin scelerisque, leo vitae dignissim blandit, justo elit tempor libero, non placerat mauris nulla sit amet magna. Fusce ornare tellus non euismod blandit.</p>
       <img class="imgrobotinfo" src="../assets/450_1000.png">
     </div>
   </div>

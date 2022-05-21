@@ -1,11 +1,5 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-body {
-  background: linear-gradient(180deg, #000001, #011439) !important;
-  font-family: 'Inter', sans-serif;
-  color: white;
-  height: 100%;
-}
 #vue_app, #app, .content{
   height: 100%;
 }
