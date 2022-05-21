@@ -103,8 +103,8 @@ let pivot4 = new THREE.Object3D();
         loop()
     })
     
-    let gpt = new THREE.IcosahedronGeometry(40, 3);
-    let mpt = new THREE.PointsMaterial({size: 0.2, color: 0x00ffff});
+    let gpt = new THREE.IcosahedronGeometry(40, 6);
+    let mpt = new THREE.PointsMaterial({size: 0.5, color: 0x00ffff});
     let pt = new THREE.Points(gpt, mpt);
     pt.position.set( 0, 0, 0);
     scene.add(pt)
