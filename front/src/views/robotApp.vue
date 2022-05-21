@@ -58,7 +58,7 @@ header{
     <!-- <div id="modelApp"></div> -->
     <div id="modelApp" ref="canvas"></div>
     <div id="buttons">
-      <span class="hablar" @click="ToggleMic(this.pivot1)"></span>
+      <span class="hablar" @click="ToggleMic"></span>
     </div>
   </div>
 </template>
@@ -95,15 +95,14 @@ export default {
 			this.pivot4 = new THREE.Object3D();
 
 			this.loadCollada() 
-      this.loadBlueSphere() 
+      		this.loadBlueSphere() 
 			this.createLight() 
 			this.createCamera()
 			this.createRender()
 			this.render()
-      this.configOrbitControls()
-	  this.movePivot1()
+      		this.configOrbitControls()
 		},
-		ToggleMic(pivote1) {
+		ToggleMic() {
 			let recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 			recognition.lang = 'es-ES';
 			recognition.continous = true;
@@ -155,37 +154,78 @@ export default {
 					recognition.stop()
 					let counter = 0;
 					const h = setInterval(function(){
-						console.log(counter);
-						//pivote1.rotation.z += 0.1;
-						if (window.pivot0.rotation.y < 0.8) {
+						if (window.pivot0.rotation.y < 0.79) {
 							window.pivot0.rotation.y += 0.1;
 						}else if(window.pivot0.rotation.y > 0.8){
 							window.pivot0.rotation.y -= 0.1;
 						}
-						 //window.movePivot1()
-						//this.pivot1.rotation.z += 0.01;
+						if (window.pivot1.rotation.z < 0.79) {
+							window.pivot1.rotation.z+=0.1;
+						}else if (window.pivot1.rotation.z > 0.8) {
+							window.pivot1.rotation.z-=0.1;
+						}
+						if (window.pivot2.rotation.z < -1.5) {
+							window.pivot2.rotation.z+=0.1;
+						}else if (window.pivot2.rotation.z > -1.4) {
+							window.pivot2.rotation.z-=0.1;
+						}
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot0 = " + window.pivot0.rotation.y);
+						console.log("pivot1 = " + window.pivot1.rotation.z);
+						console.log("pivot2 = " + window.pivot2.rotation.z);
 						counter++;
-						if(counter === 25) {
+						if(counter === 50) {
 							clearInterval(h);
 						}
-					}, 10);
+					}, 30);
+				}else if (
+					t.includes('aleatorio') ||
+					t.includes('random')
+				) {
+					recognition.stop()
+					let counter = 0;
+					let rand0 = Math.random() * 100;
+					let rand1 = Math.random() * 100;
+					let rand2 = Math.random() * 100;
+					let rand3 = Math.random() * 100;
+					let rand4 = Math.random() * 100;
+
+					const h = setInterval(function(){
+						if (window.pivot0.rotation.y < rand0) {
+							window.pivot0.rotation.y += 0.1;
+						}else if(window.pivot0.rotation.y > rand0+1){
+							window.pivot0.rotation.y -= 0.1;
+						}
+						if (window.pivot1.rotation.z < rand1) {
+							window.pivot1.rotation.z+=0.1;
+						}else if (window.pivot1.rotation.z > rand1+1) {
+							window.pivot1.rotation.z-=0.1;
+						}
+						if (window.pivot2.rotation.z < rand2) {
+							window.pivot2.rotation.z+=0.1;
+						}else if (window.pivot2.rotation.z > rand2+1) {
+							window.pivot2.rotation.z-=0.1;
+						}
+						console.log("-----------------"+counter+"---------------------"+" rand0:"+rand0+" rand1:"+rand1+" rand2:"+rand2+" rand3:"+rand3+" rand4:"+rand4);
+						console.log("pivot0 = " + window.pivot0.rotation.y);
+						console.log("pivot1 = " + window.pivot1.rotation.z);
+						console.log("pivot2 = " + window.pivot2.rotation.z);
+						counter++;
+						if(counter === 50) {
+							clearInterval(h);
+						}
+					}, 30);
 				}
 			};
 			
 		},
-		movePivot1(){
-			// THIS.pivot1.rotation.z += 0.01;
-			//console.log(this.pivot1.rotation.z);
-			//this.pivot1.rotation.z += 1;
-			//this.pivot1.rotation.z = 10;
-		},
-    loadBlueSphere() {
-      this.gpt = new THREE.IcosahedronGeometry(40, 3);
-      this.mpt = new THREE.PointsMaterial({size: 0.2, color: 0x00ffff});
-      this.pt = new THREE.Points(this.gpt, this.mpt);
-      this.pt.position.set( 0, 0, 0);
-      this.scene.add(this.pt)
-    },
+    	loadBlueSphere() {
+      		this.gpt = new THREE.IcosahedronGeometry(40, 3);
+      		this.mpt = new THREE.PointsMaterial({size: 0.2, color: 0x00ffff});
+      		this.pt = new THREE.Points(this.gpt, this.mpt);
+      		this.pt.position.set( 0, 0, 0);
+      		this.scene.add(this.pt)
+    	},
 		loadCollada() {
 			const THIS = this
 			const loader = new ColladaLoader()
@@ -209,11 +249,11 @@ export default {
 
 				//var AxisHelperP1 = new window.three.AxesHelper(10);
 				//THIS.pivot4.add(AxisHelperP1);
-				window.pivot0 = THIS.pivot0;
-				window.pivot1 = THIS.pivot0;
-				window.pivot2 = THIS.pivot0;
-				window.pivot3 = THIS.pivot0;
-				window.pivot4 = THIS.pivot0;
+				window.pivot0 = componentsArray.ArmBase2;
+				window.pivot1 = THIS.pivot1;
+				window.pivot2 = THIS.pivot2;
+				window.pivot3 = THIS.pivot3;
+				window.pivot4 = THIS.pivot4;
 
 				THIS.pivot0.position.set( 0, -30, 0);
 				componentsArray.ArmBase.position.set(0,0,0);
@@ -230,12 +270,12 @@ export default {
 				// 	console.log("pivot1: "+THIS.pivot1.rotation.z);
 				// });
 
-				const gui = new GUI();
-				gui.add(componentsArray.ArmBase2.rotation, "y", 0, Math.PI * 2).name("Base");
-				gui.add(THIS.pivot1.rotation, "z", 0, Math.PI * 2).name("Brazo 1")
-				gui.add(THIS.pivot2.rotation, "z", 0, Math.PI * 2).name("Brazo 2");
-				gui.add(THIS.pivot3.rotation, "z", 0, Math.PI * 2).name("Brazo 3");
-				gui.add(THIS.pivot4.rotation, "y", 0, Math.PI * 2).name("Brazo 4");
+				// const gui = new GUI();
+				// gui.add(componentsArray.ArmBase2.rotation, "y", 0, Math.PI * 2).name("Base");
+				// gui.add(THIS.pivot1.rotation, "z", 0, Math.PI * 2).name("Brazo 1")
+				// gui.add(THIS.pivot2.rotation, "z", 0, Math.PI * 2).name("Brazo 2");
+				// gui.add(THIS.pivot3.rotation, "z", 0, Math.PI * 2).name("Brazo 3");
+				// gui.add(THIS.pivot4.rotation, "y", 0, Math.PI * 2).name("Brazo 4");
 				THIS.loop();
 			});
 		},
@@ -246,18 +286,18 @@ export default {
       		this.pt.rotation.y+= 0.001;
 		},
 		createLight() {    
-      var pl = new THREE.PointLight(0xffffff);
-      var pl2 = new THREE.PointLight(0xffffff);
-      var pl3 = new THREE.PointLight(0xffffff);
-      var pl4 = new THREE.PointLight(0xffffff);
-      pl.position.set(30, 60, 40);
-      pl2.position.set(-40, 10, -40);
-      pl3.position.set(-30, 10, 30);
-      pl4.position.set(30, 10, -30);
-      this.scene.add(pl);
-      this.scene.add(pl2);
-      this.scene.add(pl3);
-      this.scene.add(pl4);
+			var pl = new THREE.PointLight(0xffffff);
+			var pl2 = new THREE.PointLight(0xffffff);
+			var pl3 = new THREE.PointLight(0xffffff);
+			var pl4 = new THREE.PointLight(0xffffff);
+			pl.position.set(30, 60, 40);
+			pl2.position.set(-40, 10, -40);
+			pl3.position.set(-30, 10, 30);
+			pl4.position.set(30, 10, -30);
+			this.scene.add(pl);
+			this.scene.add(pl2);
+			this.scene.add(pl3);
+			this.scene.add(pl4);
 		},
 		createCamera() {    
 			this.camera.position.set(50, 10, 50)
@@ -269,9 +309,9 @@ export default {
 			this.$refs.canvas.appendChild(this.renderer.domElement);
 		},
 		render() {
-      this.renderer.setClearColor( 0x000000, 0 );
+      		this.renderer.setClearColor( 0x000000, 0 );
 			this.renderer.setSize(840 , 840); //840/840
-      this.renderer.render(this.scene, this.camera);
+      		this.renderer.render(this.scene, this.camera);
 		},
 		getRobotItems(object_group, componentsArray, that) {
 			object_group.children.forEach(function (item) {
@@ -288,11 +328,11 @@ export default {
 			});
 			return componentsArray;
 		},
-    configOrbitControls() {
-      this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
-      this.orbitControls.enablePan = false;
-      this.orbitControls.enableZoom = false;
-    },
+    	configOrbitControls() {
+			this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
+			this.orbitControls.enablePan = false;
+			this.orbitControls.enableZoom = false;
+    	},
 	},
 	created: function () {
 	},
