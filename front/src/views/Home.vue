@@ -29,7 +29,9 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
 .nav-menu{display: flex;align-items: end;list-style:none;}
 .info span{display: flex;align-items: center;cursor: pointer;}
 .nav-menu li{padding: 10px 30px;margin: 0px 15px;cursor: pointer;font-size: 16px;border: solid 1px transparent;font-weight: 600;}
-.signInBtn{border: solid 1px white !important;}
+.signInBtn{border: solid 1px white !important;z-index: 10; }
+.loginBtn{z-index: 10;}
+.signInBtn a, .loginBtn a{text-decoration: none; color: white;}
 .content{display: flex;}
 .info a, .info .lnr{text-decoration: none;color: white;font-size: 24px;line-height: 40px;font-weight: 400;}
 .info .lnr{padding: 2px 0px 0px 10px;}
@@ -42,6 +44,7 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
 #home-arm-container-desktop {height: 100%;width: 50%;display: flex;justify-content: center;display: flex;
     justify-content: center;}
 #home-arm-container-desktop #arm_canvas canvas {display: block;width: 90rem !important;height: 70rem !important;;touch-action: none;}
+.txtBlock {margin: 0px 0px 0px 90px;display: flex;flex-flow: column;gap: 1rem;}
 .txtBlock {margin: 0px 0px 0px 90px;display: flex;flex-flow: column;gap: 1rem;}
 .info, #model {width: 100%; margin-top: 12rem;}
 .info h1 {font-size: 70px;font-weight: 900;text-transform: uppercase;}
@@ -151,7 +154,11 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
             Our app was developed with the idea of make in easy the fact of move
             your robot arm
           </p>
-          <span>More info</span>
+           <div class="txtBlock cool-link">
+              <span class="info">
+                <span class=""><router-link to="/Info">More info</router-link></span>
+              </span>
+           </div>
         </div>
       </div>
       <div id="home-info"></div>
@@ -167,8 +174,8 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
         </span>
         <span class="headerPart2">
           <ul class="nav-menu">
-            <li class="signInBtn">Sign In</li>
-            <li>Login</li>
+            <li class="signInBtn"><router-link to="/Register">Sign up</router-link></li>
+            <li  class="loginBtn"><router-link to="/Login">Login</router-link></li>
           </ul>
         </span>
       </header>
@@ -183,8 +190,7 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry.
             </h2>
-            <span class=""
-              ><a href="">More info</a><span class="lnr lnr-arrow-right"></span
+            <span class=""><router-link to="/Info">More info</router-link><span class="lnr lnr-arrow-right"></span
             ></span>
           </div>
         </span>
@@ -206,15 +212,16 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
         </div>
       </div>
     </div>
-    <!--  -->
+
   </div>
 </template>
 <script>
 import axios from "../helpers/axios_import";
 import ArmModel from "./ArmModel.vue";
+import Info from "./Info.vue";
 
 export default {
-  components: { ArmModel },
+  components: { ArmModel,Info },
   name: "Home",
   data: function () {
     return {
