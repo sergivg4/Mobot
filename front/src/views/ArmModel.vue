@@ -161,7 +161,15 @@ export default {
     },
     createCamera() {
       // PerspectiveCamera( fov, aspect, near, far )
-      this.camera.position.set(70, 0, 70);
+       if(window.innerWidth>=800){
+          this.camera.position.set(60, 0, 60);
+        }else this.camera.position.set(70, 0, 70);
+      window.addEventListener("resize", () => {
+        if(window.innerWidth>=800){
+          this.camera.position.set(70, 0, 70);
+        }else this.camera.position.set(70, 0, 70);
+      });
+      
       //this.camera.lookAt(this.look_x, this.look_y, this.look_z)
       this.scene.add(this.camera);
     },

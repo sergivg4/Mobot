@@ -1,4 +1,7 @@
 <style>
+#Login{
+  height: 100%;
+}
 .mobotTitle {
   font-size: 35px;
   margin-left: 10%;
@@ -320,6 +323,7 @@ h2{
     bottom: 100%;
   }
 }
+
 </style>
 <template>
   <div id="Login">

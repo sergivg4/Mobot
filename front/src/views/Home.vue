@@ -1,22 +1,27 @@
 <style>
+
 #home{width: 100%;height: 100%;}
 
 /* MOBILE HOME CSS */
 #home-mobile {background: #191a1f;background: linear-gradient(#191a1f 57%,rgba(7, 6, 93, 1) 104%,rgba(16, 16, 185, 1) 81%);display: flex;height: 100%;width: 100%;flex-flow: column; /* background: linear-gradient(#191A1F, #0754F1 175%); */}
 #home-header {height: 15vh;width: 100%;display: flex;flex-flow: row;align-items: center;}
-#home-arm-container {height: 24rem;width: 100%;}
+#home-arm-container-mobile {height: 24rem;width: 100%;display: flex;
+    justify-content: center;}
 #home-bottom {width: 100%;height: 18rem;display: flex;align-items: center;flex-flow: column;}
 .home-bottom-header {padding-bottom: 15px;padding-top: 5px;font-size: 9px;color: white;letter-spacing: 2px;width: 19rem;}
 .home-bottom-body {padding-left: 15px;padding-right: 15px;position: relative;width: 19rem;}
 .home-bottom-body p {font-size: 15px;color: #cbcbcb;letter-spacing: 2px;}
 .home-bottom-body span {cursor: pointer;border-bottom: 1px solid rgb(255, 255, 255);padding-bottom: 0.2px;font-size: 15px;color: #cbcbcb;letter-spacing: 2px;margin-top: 15px;position: absolute;}
 .home-title {padding-left: 30px;padding-top: 5px;color: rgb(255, 255, 255, 1.5);}
+#home-arm-container-mobile #arm_canvas canvas {display: block;    width: 100% !important;height: 46rem !important;touch-action: none;}
 
 /* HOME DESKTOP */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+#home-desktop{
+  width: 100%;
+  height: 100%;
+}
 body {background: linear-gradient(180deg, #000001, #011439) !important;font-family: 'Inter', sans-serif;color: white;height: 100%;}
 #vue_app, #app, .content{height: 100%;}
-.content{/* height: 100%; */}
 header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
 .headerPart1{width: 300px;}
 .headerPart2{width: 100%;display: flex;justify-content: flex-end;}
@@ -26,30 +31,74 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
 .nav-menu li{padding: 10px 30px;margin: 0px 15px;cursor: pointer;font-size: 16px;border: solid 1px transparent;font-weight: 600;}
 .signInBtn{border: solid 1px white !important;}
 .content{display: flex;}
-.info, #model{width: 50%;height: 90%;display: flex;align-items: center;}
-.info h1{font-size: 60px;font-weight: 900;text-transform: uppercase;}
-.info h2{color: #97979D;font-size: 22px;font-weight: 600;}
 .info a, .info .lnr{text-decoration: none;color: white;font-size: 24px;line-height: 40px;font-weight: 400;}
 .info .lnr{padding: 2px 0px 0px 10px;}
-.txtBlock{margin: 0px 0px 0px 200px;}
 #model{display: flex;}
 #model canvas{max-width: 100%;max-height: 50%;}
 .cool-link::after {content: '';display: block;width: 0;height: 2px;background: rgb(255, 255, 255);transition: width .3s;}
 .cool-link:hover::after {width: 50%;transition: width .3s;}
+
+#arm_canvas {width: 52rem;height:45rem;}
+#home-arm-container-desktop {height: 100%;width: 50%;display: flex;justify-content: center;display: flex;
+    justify-content: center;}
+#home-arm-container-desktop #arm_canvas canvas {display: block;width: 90rem !important;height: 70rem !important;;touch-action: none;}
+.txtBlock {margin: 0px 0px 0px 90px;display: flex;flex-flow: column;gap: 1rem;}
+.info, #model {width: 100%; margin-top: 12rem;}
+.info h1 {font-size: 70px;font-weight: 900;text-transform: uppercase;}
+.info h2 {color: #97979D;font-size: 30px;font-weight: 600;}
+/* MEDIA QUERYS */
+/* @media only screen and (min-width: 750px) {
+#home-arm-container {height: 28rem;width: 100%;}
+.home-bottom-body {padding-left: 15px;padding-right: 15px;position: relative;width: 39rem;}
+.home-bottom-body p {font-size: 30px;color: #cbcbcb;letter-spacing: 2px;}
+.home-bottom-body {padding-left: 15px;padding-right: 15px;position: relative;width: 39rem;}
+#home-arm-container {height: 28rem;width: 100%;}
+.home-bottom-header {padding-bottom: 1.5rem;padding-top: 4rem;font-size: 21px;color: white;letter-spacing: 2px;width: 39rem;}
+#arm_canvas canvas{display: block;width: 60rem !important;height: 70rem !important;touch-action: none;}
+#home-bottom {width: 100%;height: 23rem;display: flex;align-items: center;flex-flow: column;}
+} */
+@media only screen and (min-height: 750px) and (max-height:890px) {
+#arm_canvas {width: 85%;height: 23rem;display: flex;align-items: center;justify-content: center;}
+#home-arm-container {height: 27rem;width: 100%;display: flex;justify-content: center;}
+#home-bottom {width: 100%;height: 19rem;display: flex;align-items: center;flex-flow: column;}
+.home-bottom-header {padding-bottom: 15px;padding-top: 5px;font-size: 18px;color: white;letter-spacing: 2px;width: 20rem;}
+.home-bottom-body {padding-left: 15px;padding-right: 15px;position: relative;width: 20rem;}
+.home-bottom-body p {font-size: 19px;color: #cbcbcb;letter-spacing: 2px;}
+.home-bottom-body span {cursor: pointer;border-bottom: 1px solid rgb(255, 255, 255);padding-bottom: 0.2px;font-size: 19px;color: #cbcbcb;letter-spacing: 2px;margin-top: 15px;position: absolute;}
+}
+@media only screen and (min-width: 1400px) { 
+#home-arm-container-desktop #arm_canvas canvas {display: block;width: 150rem !important;height:95rem !important;touch-action: none;}
+#arm_canvas {width: 80rem;height: 55rem;}
+}
+@media only screen and (min-width: 740px)and (min-width: 840px)  and (max-height: 500px) {
+.home-desktop-header {top: 0px;height: 15%;display: flex;align-items: center;width: 100%;justify-content: center;margin-right: 50px !important;}
+div#home-desktop {height: 100%;}
+.logoMobot {width: 200px;}
+.content {display: flex;}
+.info, #model {width: 55%;height: 90%;display: block;margin-top: 3rem;}
+.txtBlock {margin: 0px 0px 0px 39px;width: 100%;}
+.info h1 {font-size: 31px;font-weight: 900;text-transform: uppercase;}
+.info h2 {color: #97979D;font-size: 22px;font-weight: 600;width: 25rem;}
+.info span {display: flex;align-items: center;cursor: pointer;}
+#arm_canvas canvas{display: block;width: 60rem !important;touch-action: none;}
+}
 </style>
 <template>
   <div id="home">
-    <!--  -->
+      <!--  -->
     <div id="home-mobile"  v-if="this.mobile==true">
       <div id="home-header">
         <div class="home-title">
-          <h1>MOOBOT</h1>
+          <img
+            class="logoMobot"
+            src="src/assets/logo_mobot_horizontal_white.png"
+            alt="logo"/>
         </div>
         <div class="mobile-nav-trigger">
           <!-- ICON TO DROP DOWN THE THE MENU -->
         </div>
       </div>
-      <div id="home-arm-container">
+      <div id="home-arm-container-mobile">
         <ArmModel></ArmModel>
       </div>
       <div id="home-bottom">
@@ -65,10 +114,10 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
         </div>
       </div>
       <div id="home-info"></div>
-    </div>
+    </div> 
     <!-- DESKTOP -->
     <div id="home-desktop" v-if="this.desktop==true">
-      <header>
+      <header class="home-desktop-header">
         <span class="headerPart1">
           <img
             class="logoMobot"
@@ -98,7 +147,9 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
             ></span>
           </div>
         </span>
+        <div id="home-arm-container-desktop">
         <ArmModel></ArmModel>
+      </div>
       </div>
     </div>
     <!--  -->
@@ -121,15 +172,20 @@ export default {
   methods: {},
 
   mounted() {
-    window.addEventListener("resize", () => {
-      if (window.innerWidth >= 400 && window.innerHeight >= 700) {
+    if (window.innerWidth <= 900) {
         this.mobile = true;
         this.desktop = false;
-        console.log("A");
       } else {
         this.desktop = true;
         this.mobile = false;
-        console.log("B");
+      }
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 900) {
+        this.mobile = true;
+        this.desktop = false;
+      } else {
+        this.desktop = true;
+        this.mobile = false;
       }
     });
   },
