@@ -83,10 +83,10 @@ font-family: 'Inter', sans-serif;
     <div class="info-box">
       <label class="welcomeLabel">INFORMACION SOBRE MOBOT</label>
       <h2>Tu esclavo robótico personal</h2>
-      <p class="descripcionInfo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat faucibus luctus. Sed varius fringilla odio. Integer volutpat porta nunc nec iaculis. Nullam a neque in nibh gravida tincidunt in a metus. Donec ut pellentesque nibh. Proin scelerisque, leo vitae dignissim blandit, justo elit tempor libero, non placerat mauris nulla sit amet magna. Fusce ornare tellus non euismod blandit.</p>
+      <p class="descripcionInfo">MOBOT es un brazo robótico virtual al que puedes mover usando tu voz. Pulsa en el botón de interacción y reproduce los comandos de voz que MOBOT entiende por defecto o, si te registras, personaliza tu propio movimiento y guárdalo asignándolo a un comando propio. MOBOT tiene cinco ejes independientes y está completamente modulado con three.js. Para customizar un movimiento, solo tienes que pulsar sobre los ejes y moverlos hasta la posición que desees.  </p>
     </div>
     <div class="info-box2">
-      <p class="descripcionInfo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat faucibus luctus. Sed varius fringilla odio. Integer volutpat porta nunc nec iaculis. Nullam a neque in nibh gravida tincidunt in a metus. Donec ut pellentesque nibh. Proin scelerisque, leo vitae dignissim blandit, justo elit tempor libero, non placerat mauris nulla sit amet magna. Fusce ornare tellus non euismod blandit.</p>
+      <p class="descripcionInfo">Éste proyecto ha sido realizado por el segundo grupo de 2º de DAW del instituto IES Badia del Vallès, formado por Manuel Quesada Ruiz, Sergi Valenzuela Garcia y Roger Reyes Iso.</p>
       <img class="imgrobotinfo" src="../assets/450_1000.png">
     </div>
   </div>

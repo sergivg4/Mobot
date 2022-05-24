@@ -205,8 +205,8 @@
       <div class="mobotTitle">MOBOT</div>
     <div class="welcome-box">
       <label class="welcomeLabel">BIENVENIDO A MOBOT</label>
-      <p class="descripcion">Tu esclavo robótico personal</p>
-      <p class="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat faucibus luctus. Sed varius fringilla odio. Integer volutpat porta nunc nec iaculis. Nullam a neque in nibh gravida tincidunt in a metus. Donec ut pellentesque nibh. Proin scelerisque, leo vitae dignissim blandit, justo elit tempor libero, non placerat mauris nulla sit amet magna. Fusce ornare tellus non euismod blandit.</p>
+      <h2>Tu esclavo robótico personal</h2>
+      <p class="descripcion">Siéntete libre de mandar órdenes a MOBOT. Él te escuchará y te obedecerá sin rechistar. Registrate en MOBOT si quieres disfrutar del 100% de la experiéncia y si quieres recibir todas las noticias y notificaciones para no perderte ninguna actualización futura.</p>
       <p class="textoregistro2">¿Ya estás registrado?</p>
       <div class="button2">
         <span></span>
