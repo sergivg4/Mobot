@@ -67,21 +67,50 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
 .home-bottom-body span {cursor: pointer;border-bottom: 1px solid rgb(255, 255, 255);padding-bottom: 0.2px;font-size: 19px;color: #cbcbcb;letter-spacing: 2px;margin-top: 15px;position: absolute;}
 }
 @media only screen and (min-width: 1400px) { 
-#home-arm-container-desktop #arm_canvas canvas {display: block;width: 150rem !important;height:95rem !important;touch-action: none;}
-#arm_canvas {width: 80rem;height: 55rem;}
+#home-arm-container-desktop #arm_canvas canvas {display: block; width: 100rem !important; height:60rem !important;touch-action: none;}
+#arm_canvas {width: 90rem;height: 52rem;}
 }
 @media only screen and (min-width: 740px)and (min-width: 840px)  and (max-height: 500px) {
-.home-desktop-header {top: 0px;height: 15%;display: flex;align-items: center;width: 100%;justify-content: center;margin-right: 50px !important;}
-div#home-desktop {height: 100%;}
-.logoMobot {width: 200px;}
-.content {display: flex;}
-.info, #model {width: 55%;height: 90%;display: block;margin-top: 3rem;}
-.txtBlock {margin: 0px 0px 0px 39px;width: 100%;}
-.info h1 {font-size: 31px;font-weight: 900;text-transform: uppercase;}
-.info h2 {color: #97979D;font-size: 22px;font-weight: 600;width: 25rem;}
-.info span {display: flex;align-items: center;cursor: pointer;}
-#arm_canvas canvas{display: block;width: 60rem !important;touch-action: none;}
+  .home-desktop-header {top: 0px;height: 15%;display: flex;align-items: center;width: 100%;justify-content: center;margin-right: 50px !important;}
+  div#home-desktop {height: 100%;}
+  .logoMobot {width: 200px;}
+  .content {display: flex;}
+  .info, #model {width: 55%;height: 90%;display: block;margin-top: 3rem;}
+  .txtBlock {margin: 0px 0px 0px 39px;width: 100%;}
+  .info h1 {font-size: 31px;font-weight: 900;text-transform: uppercase;}
+  .info h2 {color: #97979D;font-size: 22px;font-weight: 600;width: 25rem;}
+  .info span {display: flex;align-items: center;cursor: pointer;}
+  #arm_canvas canvas{display: block;width: 60rem !important;touch-action: none;}
 }
+.goMovement {cursor: pointer;width: 100px;height: 100px;position: absolute;top: 45%;z-index: 2;display: flex;align-items: center;justify-content: center;}
+.goMovement-mobile{cursor: pointer;width: 100px;height: 100px;position: absolute;top: 30%;z-index: 2;display: flex;align-items: center;justify-content: center;}
+.goMovement a{width: 100%;height: 100%; position: absolute; z-index: 10;}
+.goMovement-mobile a{width: 100%;height: 100%; position: absolute; z-index: 10;}
+.spring-spinner, .spring-spinner *{visibility: hidden;opacity: 0;transition: visibility 0s, opacity 0.5s linear;box-sizing:border-box;}
+.goMovement:hover .spring-spinner, .spring-spinner *{visibility: visible;opacity: 1;box-sizing:border-box;display: block;}
+.spring-spinner{height: 60px;width: 60px;}
+.spring-spinner .spring-spinner-part{overflow: hidden;height: calc(60px / 2);width:60px;}
+.spring-spinner .spring-spinner-part.bottom{width: 60px;height: 60px;border: calc(60px / 7) solid transparent;border-right-color: hsl(192, 100%, 50%);border-top-color: hsl(192, 100%, 50%);border-radius: 50%;box-sizing: border-box;animation: spring-spinner-animation 3s ease-in-out infinite;transform: rotate(-200deg);}
+  @keyframes spring-spinner-animation {
+    0%{
+      border-width: calc(60px / 7);
+    }
+    25%{
+      border-width: calc(60px / 23.33);
+    }
+    50%{
+      transform: rotate(115deg);
+      border-width: calc(60px / 7);
+    }
+    750%{
+      border-width: calc(60px / 23.33);
+    }
+    100%{
+      border-width: calc(60px / 7);
+    }
+  }
+
+
 </style>
 <template>
   <div id="home">
@@ -99,6 +128,18 @@ div#home-desktop {height: 100%;}
         </div>
       </div>
       <div id="home-arm-container-mobile">
+        <div class="goMovement-mobile">
+            <router-link to="/App"></router-link>
+          <div class="spring-spinner">
+            <div class="spring-spinner-part top">
+              <div class="spring-spinner-rotator"></div>
+            </div>
+
+            <div class="spring-spinner-part bottom">
+              <div class="spring-spinner-rotator"></div>
+            </div>
+          </div>
+        </div>
         <ArmModel></ArmModel>
       </div>
       <div id="home-bottom">
@@ -147,9 +188,22 @@ div#home-desktop {height: 100%;}
             ></span>
           </div>
         </span>
-        <div id="home-arm-container-desktop">
-        <ArmModel></ArmModel>
-      </div>
+        <div  id="home-arm-container-desktop">
+          
+          <div class="goMovement">
+             <router-link to="/App"></router-link>
+            <div class="spring-spinner">
+              <div class="spring-spinner-part top">
+                <div class="spring-spinner-rotator"></div>
+              </div>
+
+              <div class="spring-spinner-part bottom">
+                <div class="spring-spinner-rotator"></div>
+              </div>
+            </div>
+          </div>
+          <ArmModel></ArmModel>
+        </div>
       </div>
     </div>
     <!--  -->
@@ -169,7 +223,8 @@ export default {
       desktop: false,
     };
   },
-  methods: {},
+  methods: {
+  },
 
   mounted() {
     if (window.innerWidth <= 900) {
