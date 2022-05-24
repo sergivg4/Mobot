@@ -1,8 +1,13 @@
+@font-face {
+    font-family: 'Inter';
+    src: url(../assets/fonts/Inter-VariableFont_slnt,wght.ttf);
+    }
 * {
     padding: 0;
     margin: 0;
     scroll-behavior: smooth;
     scrollbar-gutter: auto;
+    font-family: 'Inter';
 }
 
 body {
@@ -10,9 +15,9 @@ body {
     margin: 0;
     /* background: linear-gradient(#191A1F 50%, rgba(7,6,93,1) 73%, rgba(16,16,185,1) 104%); */
     background: linear-gradient( 180deg, #000001, #011439);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    overflow: scroll; 
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
+    /* overflow: scroll; */ 
     font-family: sans-serif;
 }
 
@@ -85,6 +90,7 @@ body {
     }
 }
 
+body {background: #191A1F;overflow: hidden;height: 100%;}
 html,#app {width: 100%;height: 100%;}
 
 /* #infoContainer{

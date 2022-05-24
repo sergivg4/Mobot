@@ -360,7 +360,8 @@ h2{
     </div>
   </div>
 </template>
-
+<style>
+</style>
 <script>
 import axios from "../helpers/axios_import";
 
