@@ -4,9 +4,9 @@ import { OrbitControls, MapControls } from 'three/examples/jsm/controls/OrbitCon
 import { ColladaLoader } from 'three/examples/jsm/loaders/ColladaLoader.js';
 
 
-window.three = THREE;
-window.robot_parts = [];
-window.camera = null;
+window.three = THREE;//ya esta
+window.robot_parts = [];//ya esta
+window.camera = null;//ya esta
 window.dae_obj = null;
 window.boxHelper  = null;
 window.robot = null;
@@ -16,6 +16,24 @@ let pivot2 = new THREE.Object3D();
 let pivot3 = new THREE.Object3D();
 let pivot4 = new THREE.Object3D();
 
+// const btn = document.getElementsByClassName("hablar");
+
+// btn.addEventListener("click", function () {
+//     pivot1.rotation.x += 0.1;
+//     console.log(pivot1.rotation.x);
+// });
+
+//name();
+
+// window.name = function name(){
+//     console.log(pivot1.rotation.x);
+//     pivot1.rotation.x += 0.1;
+// };
+
+function name() {
+    console.log(pivot1.rotation.x);
+    pivot1.rotation.x += 0.1;
+}
 (function () {
     // point light
     var pl = new THREE.PointLight(0xffffff);
@@ -38,11 +56,7 @@ let pivot4 = new THREE.Object3D();
     //scene.add( pointLightHelper );
 
     // camera
-    const model = document.getElementById('model');
-    var camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight
-      );
+    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight );
     // camera.position.set( 70, 10, 70);
     camera.position.set( 50, 10, 50);
     scene.add(camera);
@@ -52,7 +66,7 @@ let pivot4 = new THREE.Object3D();
     var renderer = new THREE.WebGLRenderer({ alpha: true, antialias:true});
     renderer.setClearColor( 0x000000, 0 ); // the default
     renderer.setSize(840 , 840); //840/840
-    document.getElementById('model').appendChild(renderer.domElement);
+    //document.getElementById('modelApp').appendChild(renderer.domElement);
     renderer.render(scene, camera);
     // controls
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -64,9 +78,8 @@ let pivot4 = new THREE.Object3D();
         requestAnimationFrame(loop);
         renderer.render(scene, camera);
         controls.update();
-        pt.rotation.y += 0.005;
-        pivot0.rotation.y += 0.005;
-        
+        pt.rotation.y += 0.001;
+        //pivot0.rotation.y += 0.005;
     };
  
     // CREATE A COLLADALOADER INSTANCE
@@ -103,8 +116,8 @@ let pivot4 = new THREE.Object3D();
         loop()
     })
     
-    let gpt = new THREE.IcosahedronGeometry(40, 6);
-    let mpt = new THREE.PointsMaterial({size: 0.5, color: 0x00ffff});
+    let gpt = new THREE.IcosahedronGeometry(40, 3);
+    let mpt = new THREE.PointsMaterial({size: 0.2, color: 0x00ffff});
     let pt = new THREE.Points(gpt, mpt);
     pt.position.set( 0, 0, 0);
     scene.add(pt)
@@ -124,5 +137,6 @@ function getRobotItems(object_group, componentsArray){
         })
         return componentsArray
 }
+
 
 

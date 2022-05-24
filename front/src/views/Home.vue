@@ -108,7 +108,7 @@ header{
   <div id="home">
     <header>
       <span class="headerPart1">
-          <img class="logoMobot" src="https://www.kevinbeerse.com/wp-content/uploads/2020/10/logo_12.png" alt="logo">
+          <img class="logoMobot" src="src/assets/logo_mobot_horizontal_white.png" alt="logo">
       </span>
       <span class="headerPart2">
         <ul class="nav-menu">
