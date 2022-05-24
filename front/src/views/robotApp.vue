@@ -53,17 +53,21 @@ header{
 <template>
   <div id="robotApp">
     <header>
-      <img class="logoMobot" src="https://www.kevinbeerse.com/wp-content/uploads/2020/10/logo_12.png" alt="logo">
+      <img class="logoMobot" src="src/assets/logo_mobot_horizontal_white.png" alt="logo">
     </header>
     <!-- <div id="modelApp"></div> -->
-    <div id="modelApp" ref="canvas"></div>
+    <!-- <div id="modelApp" ref="canvas"></div> -->
+	<ArmModel></ArmModel>
     <div id="buttons">
-      <span class="hablar" @click="ToggleMic"></span>
+      <!-- <span class="hablar" @click="ToggleMic"></span> -->
+	  <!-- <Voice-recognition></Voice-recognition> -->
     </div>
   </div>
 </template>
 <script >
 import axios from "../helpers/axios_import";
+import VoiceRecognitionVue from "../components/Voice-recognition.vue";
+import ArmModel from "./ArmModel.vue";
 import * as THREE from "three";
 import { GUI } from "dat.gui";
 import {OrbitControls,MapControls,} from "three/examples/jsm/controls/OrbitControls";
@@ -123,6 +127,8 @@ export default {
 			recognition.onend = () => {
 				console.log('SR Stopped')
 				this.isRecording = false
+
+				
 			};
 
 			recognition.onresult = (event) => {
@@ -212,6 +218,126 @@ export default {
 						console.log("pivot2 = " + window.pivot2.rotation.z);
 						counter++;
 						if(counter === 50) {
+							clearInterval(h);
+						}
+					}, 30);
+				}else if(
+					t.includes('brazo 1') ||
+					t.includes('gira brazo 1')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+						window.pivot0.rotation.y += 0.1;
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot0 = " + window.pivot0.rotation.y);
+						counter++;
+						if(counter === 15) {
+							clearInterval(h);
+						}
+					}, 30);
+				}else if(
+					t.includes('brazo 2') ||
+					t.includes('gira brazo 2')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+						window.pivot1.rotation.z += 0.1;
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot1 = " + window.pivot1.rotation.z);
+						counter++;
+						if(counter === 10) {
+							clearInterval(h);
+						}
+					}, 30);
+				}else if(
+					t.includes('brazo 3') ||
+					t.includes('gira brazo 3')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+						window.pivot2.rotation.z += 0.1;
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot2 = " + window.pivot2.rotation.z);
+						counter++;
+						if(counter === 10) {
+							clearInterval(h);
+						}
+					}, 30);
+				}else if(
+					t.includes('brazo 4') ||
+					t.includes('gira brazo 4')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+						window.pivot3.rotation.z += 0.1;
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot3 = " + window.pivot3.rotation.z);
+						counter++;
+						if(counter === 10) {
+							clearInterval(h);
+						}
+					}, 30);
+				}else if(
+					t.includes('brazo 5') ||
+					t.includes('gira brazo 5')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+						window.pivot4.rotation.y += 0.1;
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot4 = " + window.pivot4.rotation.y);
+						counter++;
+						if(counter === 10) {
+							clearInterval(h);
+						}
+					}, 30);
+				}
+				else if(
+					t.includes('posición inicial') ||
+					t.includes('inicio')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+
+						// if (window.pivot0.rotation.y < 0) {
+						// 	window.pivot0.rotation.y += 0.1;
+						// }else if(window.pivot0.rotation.y > 0){
+						// 	window.pivot0.rotation.y -= 0.1;
+						// }
+						// if (window.pivot1.rotation.z < 0) {
+						// 	window.pivot1.rotation.z+=0.1;
+						// }else if (window.pivot1.rotation.z > 0) {
+						// 	window.pivot1.rotation.z-=0.1;
+						// }
+						// if (window.pivot2.rotation.z < 0) {
+						// 	window.pivot2.rotation.z+=0.1;
+						// }else if (window.pivot2.rotation.z > 0) {
+						// 	window.pivot2.rotation.z-=0.1;
+						// }
+						window.pivot0.rotation.y = 0
+						window.pivot1.rotation.z = 0
+						window.pivot2.rotation.z = 0
+						window.pivot3.rotation.z = 0
+						window.pivot4.rotation.y = 0
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot0 = " + window.pivot0.rotation.y);
+						console.log("pivot1 = " + window.pivot1.rotation.z);
+						console.log("pivot2 = " + window.pivot2.rotation.z);
+
+						counter++;
+						if(counter === 100) {
 							clearInterval(h);
 						}
 					}, 30);
