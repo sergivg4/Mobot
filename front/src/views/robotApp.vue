@@ -48,7 +48,8 @@ header{
     box-shadow: 0 0 0 5px rgb(0 89 255 / 90%), 0 0 0 10px rgb(0 89 255 / 70%), 0 0 0 15px rgb(0 89 255 / 50%), 0 0 0 20px rgb(0 89 255 / 30%), 0 0 0 25px rgb(0 89 255 / 10%);
 }
 .hablar:active {
-  border-radius: 0%;
+  	width: 60px;
+    height: 60px;
 }
 @media (max-width: 500px){
 	#modelApp canvas {
