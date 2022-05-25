@@ -1,6 +1,6 @@
 <style>
 
-#home{width: 100%;height: 100%;}
+#home{width: 100vw;height: 100vh;}
 
 /* MOBILE HOME CSS */
 #home-mobile {background: #191a1f;background: linear-gradient(#191a1f 57%,rgba(7, 6, 93, 1) 104%,rgba(16, 16, 185, 1) 81%);display: flex;height: 100%;width: 100%;flex-flow: column; /* background: linear-gradient(#191A1F, #0754F1 175%); */}
@@ -70,8 +70,12 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
 .home-bottom-body span {cursor: pointer;border-bottom: 1px solid rgb(255, 255, 255);padding-bottom: 0.2px;font-size: 19px;color: #cbcbcb;letter-spacing: 2px;margin-top: 15px;position: absolute;}
 }
 @media only screen and (min-width: 1400px) { 
-#home-arm-container-desktop #arm_canvas canvas {display: block; width: 100rem !important; height:60rem !important;touch-action: none;}
-#arm_canvas {width: 90rem;height: 52rem;}
+#home-arm-container-desktop #arm_canvas canvas {display: block;
+    width: 73rem !important;
+    height: 10rem !important;
+    height: 40rem !important;
+    touch-action: none;}
+#arm_canvas {width: 90rem;height: 41rem;}
 }
 @media only screen and (min-width: 740px)and (min-width: 840px)  and (max-height: 500px) {
   .home-desktop-header {top: 0px;height: 15%;display: flex;align-items: center;width: 100%;justify-content: center;margin-right: 50px !important;}
@@ -113,7 +117,76 @@ header{top: 0px;height: 10%;display: flex;align-items: center;margin: 0px 50px;}
     }
   }
 
-
+@media (max-width: 500px){
+  html, #vue_app {
+    width: 100vw;
+    height: 100vh;
+  }
+  .headerPart1 {
+    width: auto;
+  }
+  .headerPart2{
+    display: none;
+  }
+  .content {
+    height: auto !important;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  #home-arm-container-desktop {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: -70px;
+  }
+  #home-arm-container-desktop #arm_canvas canvas {
+    display: block;
+    width: 25rem !important;
+    height: 30rem !important;
+    touch-action: none;
+  }
+  .txtBlock {
+    margin: 0px 30px 0px 30px;
+    display: flex;
+    flex-flow: column;
+    gap: 0rem;
+}
+.info h1 {
+    font-size: 46px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.info h2 {
+    color: #97979D;
+    font-size: 16px !important;
+    font-weight: 600;
+}
+.info a, .info .lnr {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: 400;
+}
+.info, #model {
+    width: 100%;
+    margin-top: 25rem;
+}
+.info-box {
+    top: 40%;
+    left: 50%;
+    width: 100%;
+}
+.info-box2 {
+    width: 100%;
+    top: 78%;
+    left: 50%;
+}
+}
 </style>
 <template>
   <div id="home">
@@ -227,29 +300,29 @@ export default {
     return {
       a: window.innerHeight,
       mobile: false,
-      desktop: false,
+      desktop: true,
     };
   },
   methods: {
   },
 
   mounted() {
-    if (window.innerWidth <= 900) {
-        this.mobile = true;
-        this.desktop = false;
-      } else {
-        this.desktop = true;
-        this.mobile = false;
-      }
-    window.addEventListener("resize", () => {
-      if (window.innerWidth <= 900) {
-        this.mobile = true;
-        this.desktop = false;
-      } else {
-        this.desktop = true;
-        this.mobile = false;
-      }
-    });
+    // if (window.innerWidth <= 900) {
+    //     this.mobile = true;
+    //     this.desktop = false;
+    //   } else {
+    //     this.desktop = true;
+    //     this.mobile = false;
+    //   }
+    // window.addEventListener("resize", () => {
+    //   if (window.innerWidth <= 900) {
+    //     this.mobile = true;
+    //     this.desktop = false;
+    //   } else {
+    //     this.desktop = true;
+    //     this.mobile = false;
+    //   }
+    // });
   },
 };
 </script>

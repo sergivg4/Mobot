@@ -327,7 +327,22 @@ h2{
 </style>
 <template>
   <div id="Login">
-    <div class="mobotTitle">MOBOT</div>
+    <header class="home-desktop-header">
+      <span class="headerPart1">
+        <router-link to="/">
+          <img
+            class="logoMobot"
+            src="src/assets/logo_mobot_horizontal_white.png"
+            alt="logo"/>
+        </router-link>
+      </span>
+      <span class="headerPart2">
+        <ul class="nav-menu">
+          <li class="signInBtn"><router-link to="/Register">Sign up</router-link></li>
+          <li  class="loginBtn"><router-link to="/Login">Login</router-link></li>
+        </ul>
+      </span>
+    </header>
     <div class="welcome-box">
       <label class="welcomeLabel">BIENVENIDO A MOBOT</label>
       <h2>Tu esclavo robótico personal</h2>

@@ -28,191 +28,387 @@ export default {
     return {};
   },
   methods: {
-    init() {
-      let gpt = new THREE.IcosahedronGeometry(33, 3);
-      let mpt = new THREE.PointsMaterial({
-        size: 0.6,
-        color: 0x00ffff,
-      });
-      let gpt2 = new THREE.IcosahedronGeometry(30,1);
-      let mpt2 = new THREE.PointsMaterial({
-        size: 0.2,
-        color: 0x00ffff,
-      });
-      (this.pt2 = new THREE.Points(gpt2, mpt2)),
-      (this.pt = new THREE.Points(gpt, mpt)),
-        (this.sphereSize = 1),
-        (this.look_x = 0),
-        (this.look_y = 35),
-        (this.look_z = 0),
-        (this.scene = new THREE.Scene());
-      this.three = THREE;
-      //CAMERA
-      this.camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight
-      );
-      //RENDER
-      this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-      //PointLight
-      // loader
-      this.loader = new ColladaLoader();
-      //PIVOTS
-      this.pivot1 = new THREE.Object3D();
-      this.pivot2 = new THREE.Object3D();
-      this.pivot3 = new THREE.Object3D();
-      this.pivot4 = new THREE.Object3D();
-      this.pivot0 = new THREE.Object3D();
+		init() {
+			this.sphereSize=1,
+			this.look_x=0,
+			this.look_y= 35,
+			this.look_z= 0,
+			this.scene = new THREE.Scene();
+			this.three = THREE;
+			//CAMERA
+			this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight);
+			this.loader = new ColladaLoader();
 
-      this.createScene();
-      this.loadCollada();
-      this.createLight();
-      this.createCamera();
-      this.createRender();
-      this.createControls();
-      this.render();
-    },
+			//PIVOTS
+      		this.pivot0 = new THREE.Object3D();
+			this.pivot1 = new THREE.Object3D();
+			this.pivot2 = new THREE.Object3D();
+			this.pivot3 = new THREE.Object3D();
+			this.pivot4 = new THREE.Object3D();
 
-    createScene() {
-      //if you want any color
-      //this.scene.background = new THREE.Color("");
-    },
-    loadCollada() {
-      const THIS = this;
-      const loader = new ColladaLoader();
-      loader.load("/models/ur10_2.dae", function (result) {
-        window.robot = result.scene;
-        let componentsArray = [];
-        componentsArray = THIS.getRobotItems(robot, componentsArray, THIS);
-        THIS.pivot0.add(componentsArray.ArmBase);
-        THIS.scene.add(componentsArray.ArmBase);
-        componentsArray.ArmBase.add(componentsArray.ArmBase2);
-        componentsArray.ArmBase2.add(THIS.pivot1);
-        THIS.pivot1.add(componentsArray.ArmBase3);
-        componentsArray.ArmBase3.add(THIS.pivot2);
-        THIS.pivot2.add(componentsArray.ArmBase4);
-        componentsArray.ArmBase4.add(THIS.pivot3);
-        THIS.pivot3.add(componentsArray.ArmBase5);
-        componentsArray.ArmBase5.add(THIS.pivot4);
-        THIS.pivot4.add(componentsArray.SubArm5);
+			this.loadCollada() 
+      		this.loadBlueSphere() 
+			this.createLight() 
+			this.createCamera()
+			this.createRender()
+			this.render()
+      		this.configOrbitControls()
+		},
+		ToggleMic() {
+			let recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+			recognition.lang = 'es-ES';
+			recognition.continous = true;
+			this.isRecording = false;
+			recognition.interimResults = false;
 
-      /*   var AxisHelperP1 = new THREE.AxesHelper(10);
-        var AxisHelperP2 = new THREE.AxesHelper(10);
-        var AxisHelperP3 = new THREE.AxesHelper(10);
-        var AxisHelperP4 = new THREE.AxesHelper(10);
-        THIS.pivot1.add(AxisHelperP1);
-        THIS.pivot2.add(AxisHelperP2);
-        THIS.pivot3.add(AxisHelperP3);
-        THIS.pivot4.add(AxisHelperP4); */
+			if (this.isRecording) {
+				recognition.stop()
+			} else {
+				recognition.start()
+			}
 
-        THIS.pivot0.position.set(0, 0, 0);
-        componentsArray.ArmBase.position.set(0, -30, 0);
-        THIS.pivot1.position.set(0, 5, 0);
-        componentsArray.ArmBase3.position.set(0, -5, 0);
-        THIS.pivot2.position.set(0, 29.35, 0);
-        componentsArray.ArmBase4.position.set(0, -29.35, 0);
-        THIS.pivot3.position.set(0, 51.9, 0);
-        componentsArray.ArmBase5.position.set(0, -51.9, 0);
-        THIS.pivot4.position.set(0, 56, -6.45);
-        componentsArray.SubArm5.position.set(0, -56, 6.45);
+			recognition.onstart = () => {
+				console.log('SR Started')
+				this.isRecording = true
+			};
 
-        //const gui = new GUI();
-        /*       gui.add(componentsArray.ArmBase2.rotation, "y", 0, Math.PI * 2).name("Base");
-      gui.add(THIS.pivot1.rotation, "z", 0, Math.PI * 2).name("Brazo 1");
-      gui.add(THIS.pivot2.rotation, "z", 0, Math.PI * 2).name("Brazo 2");
-      gui.add(THIS.pivot3.rotation, "z", 0, Math.PI * 2).name("Brazo 3");
-      gui.add(THIS.pivot4.rotation, "y", 0, Math.PI * 2).name("Brazo 4"); */
-        THIS.loop();
-      });
+			recognition.onend = () => {
+				console.log('SR Stopped')
+				this.isRecording = false
 
-      this.pt.position.set(0, 0, 0);
-      this.scene.add(this.pt);
-      this.scene.add(this.pt2);
-    },
-    loop() {
-      requestAnimationFrame(this.loop);
-      this.renderer.render(this.scene, this.camera);
-      //this.controls.update();
-      this.pt.rotation.y += 0.005;
-      this.pivot1.rotation.y += 0.005;
-    },
-    createLight() {
-      var pl2 = new THREE.PointLight(0xffffff);
-      var pl3 = new THREE.PointLight(0xffffff);
-      var pl4 = new THREE.PointLight(0xffffff);
-      var pl = new THREE.PointLight(0xffffff);
+				
+			};
 
-      pl.position.set(30, 60, 40);
-      pl2.position.set(-10, 10, -40);
-      pl3.position.set(-30, 10, 30);
-      pl4.position.set(30, 10, -30);
-      this.scene.add(pl);
-  /*     var pointLightHelper = new THREE.PointLightHelper(
-        pl2,
-        this.sphereSize,
-        0x000000
-      ); */
-     /*  var pointLightHelper = new THREE.PointLightHelper(
-        base_light,
-        this.sphereSize,
-        0x000000
-      ); 
-      this.scene.add(pointLightHelper);*/
-    },
-    createCamera() {
-      // PerspectiveCamera( fov, aspect, near, far )
-       if(window.innerWidth>=800){
-          this.camera.position.set(60, 0, 60);
-        }else this.camera.position.set(70, 0, 70);
-      window.addEventListener("resize", () => {
-        if(window.innerWidth>=800){
-          this.camera.position.set(70, 0, 70);
-        }else this.camera.position.set(70, 0, 70);
-      });
-      
-      //this.camera.lookAt(this.look_x, this.look_y, this.look_z)
-      this.scene.add(this.camera);
-    },
-    createRender() {
-      var width_arm=this.$refs.canvas.clientWidth;
-      var height_arm=this.$refs.canvas.clientHeight+20;
-      this.renderer.setSize(width_arm-50,height_arm); //840/840
-      this.renderer.setClearColor(0x000000, 0); // the default
-      this.$refs.canvas.appendChild(this.renderer.domElement);
-    },
-    render() {
-      this.renderer.render(this.scene, this.camera);
-      requestAnimationFrame(this.render);
-    },
-    createControls() {
-      this.oControls = new OrbitControls(this.camera, this.renderer.domElement);
-      this.oControls.enablePan = false;
-      this.oControls.enableZoom = false;
-      //this.controls = new MapControls(this.camera, this.renderer.domElement);
-      //this.controls.target.set(this.look_x, this.look_y, this.look_z);
-      //this.controls.update();
-    },
+			recognition.onresult = (event) => {
+				const results = event.results;
+				const frase = results[results.length -1 ][0].transcript;
+				console.log(frase);
 
-    getRobotItems(object_group, componentsArray, that) {
-      object_group.children.forEach(function (item) {
-        var temp_componentsArray = [];
-        if (item.type == "Group" && !item.name.includes("ur10")) {
-          componentsArray[item.name] = item;
-          temp_componentsArray = that.getRobotItems(
-            item,
-            componentsArray,
-            that
-          );
-        }
-        componentsArray = Object.assign(
-          {},
-          componentsArray,
-          temp_componentsArray
-        );
-      });
-      return componentsArray;
-    },
-  },
+				for (let i = 0; i < event.results.length; i++) {
+					const result = event.results[i]
+					if (result.isFinal) CheckForCommand(result)
+				}
+			};
+
+			const CheckForCommand = (result) => {
+				const t = result[0].transcript;
+				if (t.includes('para de grabar')) {
+					recognition.stop()
+				} else if (
+					t.includes('qué hora es') ||
+					t.includes('what\'s the time')
+				) {
+					recognition.stop()
+					alert(new Date().toLocaleTimeString())
+					setTimeout(() => recognition.start(), 100)
+				} else if (
+					t.includes('saluda') ||
+					t.includes('mobot saluda')
+				) {
+					recognition.stop()
+					let counter = 0;
+					const h = setInterval(function(){
+						if (window.pivot0.rotation.y < 0.79) {
+							window.pivot0.rotation.y += 0.1;
+						}else if(window.pivot0.rotation.y > 0.8){
+							window.pivot0.rotation.y -= 0.1;
+						}
+						if (window.pivot1.rotation.z < 0.79) {
+							window.pivot1.rotation.z+=0.1;
+						}else if (window.pivot1.rotation.z > 0.8) {
+							window.pivot1.rotation.z-=0.1;
+						}
+						if (window.pivot2.rotation.z < -1.5) {
+							window.pivot2.rotation.z+=0.1;
+						}else if (window.pivot2.rotation.z > -1.4) {
+							window.pivot2.rotation.z-=0.1;
+						}
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot0 = " + window.pivot0.rotation.y);
+						console.log("pivot1 = " + window.pivot1.rotation.z);
+						console.log("pivot2 = " + window.pivot2.rotation.z);
+						counter++;
+						if(counter === 50) {
+							clearInterval(h);
+						}
+					}, 30);
+				}else if (
+					t.includes('aleatorio') ||
+					t.includes('random')
+				) {
+					recognition.stop()
+					let counter = 0;
+					let rand0 = Math.random() * 100;
+					let rand1 = Math.random() * 100;
+					let rand2 = Math.random() * 100;
+					let rand3 = Math.random() * 100;
+					let rand4 = Math.random() * 100;
+
+					const h = setInterval(function(){
+						if (window.pivot0.rotation.y < rand0) {
+							window.pivot0.rotation.y += 0.1;
+						}else if(window.pivot0.rotation.y > rand0+1){
+							window.pivot0.rotation.y -= 0.1;
+						}
+						if (window.pivot1.rotation.z < rand1) {
+							window.pivot1.rotation.z+=0.1;
+						}else if (window.pivot1.rotation.z > rand1+1) {
+							window.pivot1.rotation.z-=0.1;
+						}
+						if (window.pivot2.rotation.z < rand2) {
+							window.pivot2.rotation.z+=0.1;
+						}else if (window.pivot2.rotation.z > rand2+1) {
+							window.pivot2.rotation.z-=0.1;
+						}
+						console.log("-----------------"+counter+"---------------------"+" rand0:"+rand0+" rand1:"+rand1+" rand2:"+rand2+" rand3:"+rand3+" rand4:"+rand4);
+						console.log("pivot0 = " + window.pivot0.rotation.y);
+						console.log("pivot1 = " + window.pivot1.rotation.z);
+						console.log("pivot2 = " + window.pivot2.rotation.z);
+						counter++;
+						if(counter === 50) {
+							clearInterval(h);
+						}
+					}, 30);
+				}else if(
+					t.includes('brazo 1') ||
+					t.includes('gira brazo 1')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+						window.pivot0.rotation.y += 0.1;
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot0 = " + window.pivot0.rotation.y);
+						counter++;
+						if(counter === 15) {
+							clearInterval(h);
+						}
+					}, 30);
+				}else if(
+					t.includes('brazo 2') ||
+					t.includes('gira brazo 2')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+						window.pivot1.rotation.z += 0.1;
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot1 = " + window.pivot1.rotation.z);
+						counter++;
+						if(counter === 10) {
+							clearInterval(h);
+						}
+					}, 30);
+				}else if(
+					t.includes('brazo 3') ||
+					t.includes('gira brazo 3')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+						window.pivot2.rotation.z += 0.1;
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot2 = " + window.pivot2.rotation.z);
+						counter++;
+						if(counter === 10) {
+							clearInterval(h);
+						}
+					}, 30);
+				}else if(
+					t.includes('brazo 4') ||
+					t.includes('gira brazo 4')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+						window.pivot3.rotation.z += 0.1;
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot3 = " + window.pivot3.rotation.z);
+						counter++;
+						if(counter === 10) {
+							clearInterval(h);
+						}
+					}, 30);
+				}else if(
+					t.includes('brazo 5') ||
+					t.includes('gira brazo 5')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+						window.pivot4.rotation.y += 0.1;
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot4 = " + window.pivot4.rotation.y);
+						counter++;
+						if(counter === 10) {
+							clearInterval(h);
+						}
+					}, 30);
+				}
+				else if(
+					t.includes('posición inicial') ||
+					t.includes('inicio')
+				) {
+					recognition.stop()
+					
+					let counter = 0;
+					const h = setInterval(function(){
+
+						// if (window.pivot0.rotation.y < 0) {
+						// 	window.pivot0.rotation.y += 0.1;
+						// }else if(window.pivot0.rotation.y > 0){
+						// 	window.pivot0.rotation.y -= 0.1;
+						// }
+						// if (window.pivot1.rotation.z < 0) {
+						// 	window.pivot1.rotation.z+=0.1;
+						// }else if (window.pivot1.rotation.z > 0) {
+						// 	window.pivot1.rotation.z-=0.1;
+						// }
+						// if (window.pivot2.rotation.z < 0) {
+						// 	window.pivot2.rotation.z+=0.1;
+						// }else if (window.pivot2.rotation.z > 0) {
+						// 	window.pivot2.rotation.z-=0.1;
+						// }
+						window.pivot0.rotation.y = 0
+						window.pivot1.rotation.z = 0
+						window.pivot2.rotation.z = 0
+						window.pivot3.rotation.z = 0
+						window.pivot4.rotation.y = 0
+						console.log("-----------------"+counter+"---------------------");
+						console.log("pivot0 = " + window.pivot0.rotation.y);
+						console.log("pivot1 = " + window.pivot1.rotation.z);
+						console.log("pivot2 = " + window.pivot2.rotation.z);
+
+						counter++;
+						if(counter === 100) {
+							clearInterval(h);
+						}
+					}, 30);
+				}
+			};
+			
+		},
+    	loadBlueSphere() {
+      		this.gpt = new THREE.IcosahedronGeometry(40, 3);
+      		this.mpt = new THREE.PointsMaterial({size: 0.2, color: 0x00ffff});
+      		this.pt = new THREE.Points(this.gpt, this.mpt);
+      		this.pt.position.set( 0, 0, 0);
+      		this.scene.add(this.pt)
+    	},
+		loadCollada() {
+			const THIS = this
+			const loader = new ColladaLoader()
+			loader.load("/models/ur10_2.dae", function (result) {
+				window.robot = result.scene;
+				let componentsArray = [];
+				console.log(THIS.scene)
+				componentsArray = THIS.getRobotItems(robot, componentsArray, THIS);
+				console.log(componentsArray);
+        		THIS.scene.add(THIS.pivot0)
+				THIS.pivot0.add(componentsArray.ArmBase);
+				componentsArray.ArmBase.add(componentsArray.ArmBase2);
+				componentsArray.ArmBase2.add(THIS.pivot1);
+				THIS.pivot1.add(componentsArray.ArmBase3);
+				componentsArray.ArmBase3.add(THIS.pivot2);
+				THIS.pivot2.add(componentsArray.ArmBase4);
+				componentsArray.ArmBase4.add(THIS.pivot3);
+				THIS.pivot3.add(componentsArray.ArmBase5);
+				componentsArray.ArmBase5.add(THIS.pivot4);
+				THIS.pivot4.add(componentsArray.SubArm5);
+
+				//var AxisHelperP1 = new window.three.AxesHelper(10);
+				//THIS.pivot4.add(AxisHelperP1);
+				window.pivot0 = componentsArray.ArmBase2;
+				window.pivot1 = THIS.pivot1;
+				window.pivot2 = THIS.pivot2;
+				window.pivot3 = THIS.pivot3;
+				window.pivot4 = THIS.pivot4;
+
+				THIS.pivot0.position.set( 0, -30, 0);
+				componentsArray.ArmBase.position.set(0,0,0);
+				THIS.pivot1.position.set( 0, 5, 0);
+				componentsArray.ArmBase3.position.set( 0, -5, 0);
+				THIS.pivot2.position.set( 0, 29.35, 0);
+				componentsArray.ArmBase4.position.set( 0, -29.35, 0);
+				THIS.pivot3.position.set( 0, 51.9, 0);
+				componentsArray.ArmBase5.position.set( 0, -51.9, 0);
+				THIS.pivot4.position.set( 0, 56, -6.45);
+				componentsArray.SubArm5.position.set( 0, -56, 6.45);
+
+				// THIS.pivot1.rotation.z.onChange(() => {
+				// 	console.log("pivot1: "+THIS.pivot1.rotation.z);
+				// });
+
+				// const gui = new GUI();
+				// gui.add(componentsArray.ArmBase2.rotation, "y", 0, Math.PI * 2).name("Base");
+				// gui.add(THIS.pivot1.rotation, "z", 0, Math.PI * 2).name("Brazo 1")
+				// gui.add(THIS.pivot2.rotation, "z", 0, Math.PI * 2).name("Brazo 2");
+				// gui.add(THIS.pivot3.rotation, "z", 0, Math.PI * 2).name("Brazo 3");
+				// gui.add(THIS.pivot4.rotation, "y", 0, Math.PI * 2).name("Brazo 4");
+				THIS.loop();
+			});
+		},
+		loop() {
+			requestAnimationFrame(this.loop);
+			this.renderer.render(this.scene, this.camera);
+      		this.orbitControls.update();
+      		this.pt.rotation.y+= 0.003;
+          this.pivot0.rotation.y+= 0.003;
+		},
+		createLight() {    
+			var pl = new THREE.PointLight(0xffffff);
+			var pl2 = new THREE.PointLight(0xffffff);
+			var pl3 = new THREE.PointLight(0xffffff);
+			var pl4 = new THREE.PointLight(0xffffff);
+			pl.position.set(30, 60, 40);
+			pl2.position.set(-40, 10, -40);
+			pl3.position.set(-30, 10, 30);
+			pl4.position.set(30, 10, -30);
+			this.scene.add(pl);
+			this.scene.add(pl2);
+			this.scene.add(pl3);
+			this.scene.add(pl4);
+		},
+		createCamera() {    
+			this.camera.position.set(50, 10, 50)
+			this.camera.lookAt(this.look_x, this.look_y, this.look_z)
+			this.scene.add(this.camera)
+		},
+		createRender() {
+       		this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias:true });
+			this.$refs.canvas.appendChild(this.renderer.domElement);
+		},
+		render() {
+      		this.renderer.setClearColor( 0x000000, 0 );
+			this.renderer.setSize(840 , 840); //840/840
+      		this.renderer.render(this.scene, this.camera);
+		},
+		getRobotItems(object_group, componentsArray, that) {
+			object_group.children.forEach(function (item) {
+				var temp_componentsArray = [];
+				if (item.type == "Group" && !item.name.includes("ur10")) {
+					componentsArray[item.name] = item;
+					temp_componentsArray = that.getRobotItems(item, componentsArray, that);
+				}
+				componentsArray = Object.assign(
+					{},
+					componentsArray,
+					temp_componentsArray
+				);
+			});
+			return componentsArray;
+		},
+    	configOrbitControls() {
+			this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
+			this.orbitControls.enablePan = false;
+			this.orbitControls.enableZoom = false;
+    	},
+	},
   created: function () {},
   mounted: function () {
     this.init();

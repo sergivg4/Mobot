@@ -33,10 +33,12 @@ header{
 #modelApp{
   display: flex;
   height: 75%;
+  justify-content: center;
 }
 #modelApp canvas{
   max-width: 100%;
   max-height: 115%;
+  min-width: 1080px;
   margin-top: -40px;
 }
 .hablar {
@@ -48,19 +50,26 @@ header{
 .hablar:active {
   border-radius: 0%;
 }
+@media (max-width: 500px){
+	#modelApp canvas {
+    max-width: 100%;
+    max-height: 110%;
+    min-width: 80px;
+    margin-top: -18px;
+}
+}
 
 </style>
 <template>
   <div id="robotApp">
     <header>
-      <img class="logoMobot" src="src/assets/logo_mobot_horizontal_white.png" alt="logo">
+	  <router-link to="/">
+      	<img class="logoMobot" src="src/assets/logo_mobot_horizontal_white.png" alt="logo">
+	  </router-link>
     </header>
-    <!-- <div id="modelApp"></div> -->
-    <!-- <div id="modelApp" ref="canvas"></div> -->
-	<ArmModel></ArmModel>
+    	<div id="modelApp" ref="canvas"></div>
     <div id="buttons">
-      <!-- <span class="hablar" @click="ToggleMic"></span> -->
-	  <!-- <Voice-recognition></Voice-recognition> -->
+      <span class="hablar" @click="ToggleMic"></span>
     </div>
   </div>
 </template>

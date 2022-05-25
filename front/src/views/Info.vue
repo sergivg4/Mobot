@@ -10,7 +10,7 @@ font-family: 'Inter', sans-serif;
   flex-flow: column;
   gap: 30px;
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 30%;
   width: 900px;
   padding: 40px;
@@ -24,7 +24,7 @@ font-family: 'Inter', sans-serif;
   flex-flow: column;
   gap: 30px;
   position: absolute;
-  top: 55%;
+  top: 58%;
   left: 75%;
   width: 900px;
   padding: 40px;
@@ -61,7 +61,7 @@ font-family: 'Inter', sans-serif;
 
   .info-box2{
     width: 100%;
-    top: 75%;
+    top: 60%;
     left: 44%;
   }
 }
@@ -73,13 +73,29 @@ font-family: 'Inter', sans-serif;
 
   .info-box2{
     left: 42%;
-    top: 80%;
+    top: 52%;
   }
 }
 
 </style>
 <template>
   <div id="info">
+    <header class="home-desktop-header">
+      <span class="headerPart1">
+        <router-link to="/">
+          <img
+            class="logoMobot"
+            src="src/assets/logo_mobot_horizontal_white.png"
+            alt="logo"/>
+        </router-link>
+      </span>
+      <span class="headerPart2">
+        <ul class="nav-menu">
+          <li class="signInBtn"><router-link to="/Register">Sign up</router-link></li>
+          <li  class="loginBtn"><router-link to="/Login">Login</router-link></li>
+        </ul>
+      </span>
+    </header>
     <div class="info-box">
       <label class="welcomeLabel">INFORMACION SOBRE MOBOT</label>
       <h2>Tu esclavo robótico personal</h2>
